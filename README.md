@@ -173,4 +173,21 @@ if __name__ == '__main__':
 <a href="https://ibb.co/MCBvZyb"><img src="https://i.ibb.co/LZNFYDM/scans-html-img.png" alt="scans-html-img" border="0"></a>
 <br>
 <a href="https://ibb.co/7p7wGRP"><img src="https://i.ibb.co/M1qYRGr/results-html-img.png" alt="results-html-img" border="0"></a>
+<h1>TEAM CREDITS</h1>
+<p><pre>PROJECT ON VULNERABILITY ASSESSMENT FRAMEWORK USING MODERN GUI
+BY: TEAM GUARDIANS
+DETAILS OF THE GROUP MEMBERS:
+ 1. KUSHAGRA KALE
+ 2. JAYADITHYA G
+ 3. JISHNU O
+ 4. KAMISETTY LAKSHMI CHAITRIKA
+ 5. KHUSHI MADAVI
+ 6. HARSHAL BEHARE
+ 7. MADHUR SAPRA
+ 8. MANAS PATEKAR
+ 9. MD. ASADULLAH ABBASI
+ 10.NAMIT SHARMA
+ 11. NEHAL HEMDEV
+ </pre>
+</p>
 
