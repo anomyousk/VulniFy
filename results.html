@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        h1, h2 {
+            font-size: 2.5em;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #1a1a1a;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #00ff00;
+        }
+        strong {
+            color: #ff0000;
+        }
+        canvas {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scan Results</h1>
+
+    <h2>ZAP Alerts:</h2>
+    <div>
+        <h3>High Risk Alerts:</h3>
+        <ul>
+            {% for alert in categorized_alerts['High'] %}
+            <li>
+                <strong>{{ alert['alert'] }}</strong> - {{ alert['risk'] }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Medium Risk Alerts:</h3>
+        <ul>
+            {% for alert in categorized_alerts['Medium'] %}
+            <li>
+                <strong>{{ alert['alert'] }}</strong> - {{ alert['risk'] }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Low Risk Alerts:</h3>
+        <ul>
+            {% for alert in categorized_alerts['Low'] %}
+            <li>
+                <strong>{{ alert['alert'] }}</strong> - {{ alert['risk'] }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>Informational Alerts:</h3>
+        <ul>
+            {% for alert in categorized_alerts['Informational'] %}
+            <li>
+                <strong>{{ alert['alert'] }}</strong> - {{ alert['risk'] }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h2>Nmap Scan Results:</h2>
+    <div>
+        <ul>
+            {% for result in nmap_results %}
+            <li>
+                Host: {{ result.host }} | Port: {{ result.port }} | Protocol: {{ result.protocol }} | Service: {{ result.service }}
+                {% if result.version %}
+                    | Version: {{ result.version }}
+                {% endif %}
+                {% if result.extrainfo %}
+                    | Extra Info: {{ result.extrainfo }}
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <canvas id="resultsChart"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var categorizedAlerts = JSON.parse('{{ categorized_alerts|tojson|safe }}');
+
+            var counts = {
+                'High': categorizedAlerts.High.length,
+                'Medium': categorizedAlerts.Medium.length,
+                'Low': categorizedAlerts.Low.length,
+                'Informational': categorizedAlerts.Informational.length
+            };
+
+            var ctx = document.getElementById('resultsChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(counts),
+                    datasets: [{
+                        label: 'Vulnerability Counts',
+                        data: Object.values(counts),
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#FF9F40']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#00ff00'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    var label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += context.raw;
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
