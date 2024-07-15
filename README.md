@@ -168,3 +168,7 @@ def scans():
 if __name__ == '__main__':
     app.run(debug=True)
 </code>
+<img src="https://ibb.co/SQq1Z3j">
+<img src="https://ibb.co/MCBvZyb">
+<img src="https://ibb.co/7p7wGRP">
+
