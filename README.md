@@ -168,7 +168,7 @@ def scans():
 if __name__ == '__main__':
     app.run(debug=True)
 </code>
-<img src="https://ibb.co/SQq1Z3j">
-<img src="https://ibb.co/MCBvZyb">
+<a href="https://ibb.co/SQq1Z3j"><img src="https://i.ibb.co/LQ4qsZF/index-html-img.png" alt="index-html-img" border="0"></a>
+<a href="https://ibb.co/MCBvZyb"><img src="https://i.ibb.co/LZNFYDM/scans-html-img.png" alt="scans-html-img" border="0"></a>
 <a href="https://ibb.co/7p7wGRP"><img src="https://i.ibb.co/M1qYRGr/results-html-img.png" alt="results-html-img" border="0"></a>
 
